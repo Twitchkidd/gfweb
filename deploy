@@ -1,0 +1,17 @@
+#!/bin/sh
+
+echo "Switching to branch main"
+git checkout main
+
+mv node_modules/ ../node_modules/
+mv out/ ../out/
+mv README.md ../README.md
+
+echo "Deploying files to server"
+rsync -avP ./ gareth@garethfield.website:/var/www/garethfield.website/
+
+mv ../node_modules/ node_modules/
+mv ../out/ out/
+mv ../README.md README.md
+
+echo "Deployment complete"
